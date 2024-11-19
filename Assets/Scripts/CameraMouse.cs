@@ -34,6 +34,11 @@ public class CameraMouse : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
+        if (Cursor.lockState == CursorLockMode.None) 
+        {
+            mouseX = mouseY = 0f;
+        }
+
         // Calculate base rotation from mouse input
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
@@ -66,6 +71,14 @@ public class CameraMouse : MonoBehaviour
             if (currentSelected.GetComponent<InteractedObject>())
             {
                 currentSelected.GetComponent<InteractedObject>().Clicked();
+            }
+            if (currentSelected.GetComponent<InteractandDisappear>())
+            {
+                currentSelected.GetComponent<InteractandDisappear>().Clicked();
+            }
+            if (currentSelected.GetComponent<InteracttoAppear>())
+            {
+                currentSelected.GetComponent<InteracttoAppear>().Clicked();
             }
             if (currentSelected.GetComponent<InteractandChangeCamera>())
             {

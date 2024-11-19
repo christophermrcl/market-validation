@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MicrophoneLoudness : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class MicrophoneLoudness : MonoBehaviour
     private int maxFreq;
 
     public StateManager gameManager;
+    public Image barLoudness;
     void Start()
     {
         // Get the frequency range supported by the microphone
@@ -27,6 +29,7 @@ public class MicrophoneLoudness : MonoBehaviour
     {
         // Get the loudness from the microphone input
         float loudness = GetLoudnessFromMicrophone();
+        barLoudness.fillAmount = loudness;
 
         // Check if loudness exceeds the threshold
         if (loudness > loudnessThreshold)
